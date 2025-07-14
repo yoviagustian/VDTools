@@ -107,6 +107,11 @@ function App() {
           <li>The archive will be extracted by year, and you can browse years and images above.</li>
         </ol>
       </div>
+      <div style={{ marginTop: 24, fontSize: 12, color: '#888', textAlign: 'center' }}>
+        <div>Powered by:</div>
+        <div>yovi.a <span style={{ fontStyle: 'italic' }}>(kenangan mantan reguler less sugar)</span></div>
+        <div>s.evan <span style={{ fontStyle: 'italic' }}>(kenangan mantan reguler no sugar)</span></div>
+      </div>
     </div>
   );
 }
