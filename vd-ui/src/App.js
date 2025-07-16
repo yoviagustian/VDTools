@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './App.css';
 
 function App() {
   const [input, setInput] = useState('');
@@ -62,10 +63,43 @@ function App() {
   };
 
   return (
-    <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%)', padding: '20px 0' }}>
+    <>
+      <style>{`
+        @keyframes titleMove {
+          0% {
+            transform: translateY(0px) scale(1);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+          }
+          25% {
+            transform: translateY(-3px) scale(1.01);
+            text-shadow: 0 4px 8px rgba(255,255,255,0.1);
+          }
+          50% {
+            transform: translateY(-5px) scale(1.02);
+            text-shadow: 0 6px 12px rgba(255,255,255,0.2), 0 0 20px rgba(255,255,255,0.1);
+          }
+          75% {
+            transform: translateY(-3px) scale(1.01);
+            text-shadow: 0 4px 8px rgba(255,255,255,0.1);
+          }
+          100% {
+            transform: translateY(0px) scale(1);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+          }
+        }
+      `}</style>
+      <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%)', padding: '20px 0' }}>
       <div style={{ maxWidth: 800, margin: '0 auto', padding: '40px 20px' }}>
         <div style={{ textAlign: 'center', marginBottom: 40 }}>
-          <h1 style={{ fontSize: 48, fontWeight: 'bold', color: '#fff', marginBottom: 8, textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>Niuless</h1>
+          <h1 className="moving-title" style={{ 
+            fontSize: 48, 
+            fontWeight: 'bold', 
+            color: '#fff', 
+            marginBottom: 8, 
+            textShadow: '0 2px 4px rgba(0,0,0,0.5)',
+            animation: 'titleMove 3s ease-in-out infinite',
+            transition: 'all 0.3s ease'
+          }}>Niuless...</h1>
           <p style={{ fontSize: 18, color: '#b0b0b0', margin: 0 }}>Easy image archive downloader and organizer</p>
         </div>
         
@@ -223,6 +257,7 @@ function App() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 

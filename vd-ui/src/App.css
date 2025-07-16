@@ -60,3 +60,33 @@
   color: #888;
   opacity: 1;
 }
+
+/* Moving title animation */
+@keyframes glow-pulse {
+  0% {
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    transform: scale(1);
+  }
+  50% {
+    text-shadow: 0 4px 8px rgba(255,255,255,0.2), 0 0 20px rgba(255,255,255,0.1);
+    transform: scale(1.02);
+  }
+  100% {
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    transform: scale(1);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.moving-title {
+  animation: glow-pulse 3s ease-in-out infinite, float 4s ease-in-out infinite;
+  transition: all 0.3s ease;
+}
