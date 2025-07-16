@@ -238,7 +238,15 @@ function App() {
           <p style={{ fontSize: 18, color: '#b0b0b0', margin: 0 }}>Easy image archive downloader and organizer</p>
         </div>
         
-        <div style={{ background: '#2a2a2a', padding: 32, borderRadius: 16, boxShadow: '0 8px 32px rgba(0,0,0,0.3)', marginBottom: 32, border: '1px solid #404040' }}>
+        <div style={{ 
+          background: 'rgba(26, 26, 46, 0.4)', 
+          padding: 32, 
+          borderRadius: 20, 
+          boxShadow: '0 8px 32px rgba(0,0,0,0.4), 0 0 20px rgba(26,26,46,0.3)', 
+          marginBottom: 32, 
+          border: '1px solid rgba(255,255,255,0.1)',
+          backdropFilter: 'blur(10px)'
+        }}>
           <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
             <div>
               <label style={{ display: 'block', fontSize: 16, fontWeight: '600', color: '#e0e0e0', marginBottom: 8 }}>
@@ -254,21 +262,24 @@ function App() {
                   width: '100%', 
                   padding: '14px 16px', 
                   fontSize: 16, 
-                  border: '2px solid #505050', 
-                  borderRadius: 8, 
+                  border: '2px solid rgba(255,255,255,0.2)', 
+                  borderRadius: 12, 
                   transition: 'all 0.3s',
                   outline: 'none',
-                  background: '#1a1a1a',
+                  background: 'rgba(26, 26, 46, 0.6)',
                   color: '#e0e0e0',
-                  boxSizing: 'border-box'
+                  boxSizing: 'border-box',
+                  backdropFilter: 'blur(8px)'
                 }}
                 onFocus={(e) => {
-                  e.target.style.borderColor = '#007bff';
-                  e.target.style.background = '#222';
+                  e.target.style.borderColor = 'rgba(0,123,255,0.8)';
+                  e.target.style.background = 'rgba(26, 26, 60, 0.8)';
+                  e.target.style.boxShadow = '0 0 15px rgba(0,123,255,0.3)';
                 }}
                 onBlur={(e) => {
-                  e.target.style.borderColor = '#505050';
-                  e.target.style.background = '#1a1a1a';
+                  e.target.style.borderColor = 'rgba(255,255,255,0.2)';
+                  e.target.style.background = 'rgba(26, 26, 46, 0.6)';
+                  e.target.style.boxShadow = 'none';
                 }}
               />
             </div>
@@ -329,7 +340,15 @@ function App() {
           )}
         </div>
         
-        <div style={{ background: '#2a2a2a', padding: 24, borderRadius: 16, boxShadow: '0 8px 32px rgba(0,0,0,0.3)', marginBottom: 32, border: '1px solid #404040' }}>
+        <div style={{ 
+          background: 'rgba(26, 26, 46, 0.4)', 
+          padding: 24, 
+          borderRadius: 20, 
+          boxShadow: '0 8px 32px rgba(0,0,0,0.4), 0 0 20px rgba(26,26,46,0.3)', 
+          marginBottom: 32, 
+          border: '1px solid rgba(255,255,255,0.1)',
+          backdropFilter: 'blur(10px)'
+        }}>
           <h3 style={{ fontSize: 20, fontWeight: '600', color: '#e0e0e0', marginBottom: 16, textAlign: 'center' }}>Existing Images</h3>
           {loading ? (
             <div style={{ textAlign: 'center', color: '#b0b0b0', padding: 20 }}>Loading years...</div>
@@ -342,26 +361,27 @@ function App() {
                   key={year}
                   onClick={() => handleYearClick(year)} 
                   style={{ 
-                    background: 'linear-gradient(135deg, #424242 0%, #616161 100%)', 
-                    border: '1px solid #555', 
+                    background: 'rgba(26, 26, 80, 0.6)', 
+                    border: '1px solid rgba(255,255,255,0.2)', 
                     color: '#e0e0e0', 
                     fontSize: 16, 
                     fontWeight: '600',
                     cursor: 'pointer', 
                     padding: '12px 24px',
-                    borderRadius: 8,
+                    borderRadius: 12,
                     transition: 'all 0.3s',
-                    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.4)'
+                    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.4), 0 0 10px rgba(26,26,80,0.3)',
+                    backdropFilter: 'blur(8px)'
                   }}
                   onMouseOver={(e) => {
                     e.target.style.transform = 'translateY(-2px)';
-                    e.target.style.boxShadow = '0 6px 16px rgba(0, 0, 0, 0.6)';
-                    e.target.style.background = 'linear-gradient(135deg, #515151 0%, #757575 100%)';
+                    e.target.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.6), 0 0 20px rgba(26,26,80,0.5)';
+                    e.target.style.background = 'rgba(26, 26, 100, 0.8)';
                   }}
                   onMouseOut={(e) => {
                     e.target.style.transform = 'translateY(0)';
-                    e.target.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.4)';
-                    e.target.style.background = 'linear-gradient(135deg, #424242 0%, #616161 100%)';
+                    e.target.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.4), 0 0 10px rgba(26,26,80,0.3)';
+                    e.target.style.background = 'rgba(26, 26, 80, 0.6)';
                   }}
                 >
                   {year}
@@ -370,7 +390,15 @@ function App() {
             </div>
           )}
         </div>
-        <div style={{ background: '#2a2a2a', padding: 24, borderRadius: 16, boxShadow: '0 8px 32px rgba(0,0,0,0.3)', marginBottom: 32, border: '1px solid #404040' }}>
+        <div style={{ 
+          background: 'rgba(26, 26, 46, 0.4)', 
+          padding: 24, 
+          borderRadius: 20, 
+          boxShadow: '0 8px 32px rgba(0,0,0,0.4), 0 0 20px rgba(26,26,46,0.3)', 
+          marginBottom: 32, 
+          border: '1px solid rgba(255,255,255,0.1)',
+          backdropFilter: 'blur(10px)'
+        }}>
           <h3 style={{ fontSize: 20, fontWeight: '600', color: '#e0e0e0', marginBottom: 16, textAlign: 'center' }}>How to Use</h3>
           <ol style={{ fontSize: 15, margin: 0, paddingLeft: 24, color: '#b0b0b0', lineHeight: 1.6 }}>
             <li style={{ marginBottom: 8 }}>Paste your URL (image.tar.gz) in the box and click submit</li>
@@ -383,7 +411,15 @@ function App() {
           </ol>
         </div>
         
-        <div style={{ background: 'rgba(42,42,42,0.8)', padding: 20, borderRadius: 12, textAlign: 'center', border: '1px solid #555' }}>
+        <div style={{ 
+          background: 'rgba(26, 26, 46, 0.3)', 
+          padding: 20, 
+          borderRadius: 16, 
+          textAlign: 'center', 
+          border: '1px solid rgba(255,255,255,0.08)',
+          backdropFilter: 'blur(8px)',
+          boxShadow: '0 4px 20px rgba(0,0,0,0.3)'
+        }}>
           <div style={{ fontSize: 14, color: '#b0b0b0', marginBottom: 8 }}>Powered by:</div>
           <div style={{ fontSize: 13, color: '#888' }}>
             <div>yovi.a <span style={{ fontStyle: 'italic' }}>(kenangan-mantan reguler less-sugar)</span></div>

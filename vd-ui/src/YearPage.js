@@ -256,13 +256,14 @@ function YearPage() {
         </div>
         <div style={{ maxWidth: 800, margin: '0 auto', padding: '20px', position: 'relative', zIndex: 2 }}>
         <div style={{ 
-          background: '#2a2a2a', 
+          background: 'rgba(26, 26, 46, 0.4)', 
           padding: isMobile ? '24px 16px' : '32px 24px', 
-          borderRadius: isMobile ? 12 : 16, 
-          boxShadow: '0 8px 32px rgba(0,0,0,0.3)', 
-          border: '1px solid #404040', 
+          borderRadius: isMobile ? 16 : 20, 
+          boxShadow: '0 8px 32px rgba(0,0,0,0.4), 0 0 20px rgba(26,26,46,0.3)', 
+          border: '1px solid rgba(255,255,255,0.1)', 
           width: '100%',
-          boxSizing: 'border-box'
+          boxSizing: 'border-box',
+          backdropFilter: 'blur(10px)'
         }}>
           <h2 style={{ 
             color: '#e0e0e0', 
