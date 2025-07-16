@@ -63,6 +63,7 @@ function App() {
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', background: '#f7f7f7' }}>
+      <h1 style={{ fontSize: 32, fontWeight: 'bold', color: '#333', marginBottom: 24 }}>Niuless</h1>
       <form onSubmit={handleSubmit} style={{ display: 'flex', gap: 8, background: '#fff', padding: 24, borderRadius: 8, boxShadow: '0 2px 8px rgba(0,0,0,0.05)' }}>
         <input
           type="text"
@@ -88,7 +89,7 @@ function App() {
         </div>
       )}
       <div style={{ marginTop: 32, background: '#fff', padding: 16, borderRadius: 8, boxShadow: '0 2px 8px rgba(0,0,0,0.05)' }}>
-        <h3>Select an Existing Image</h3>
+        <h3>List of existing images</h3>
         {loading ? (
           <div>Loading years...</div>
         ) : error ? (
@@ -106,16 +107,19 @@ function App() {
       <div style={{ marginTop: 48, maxWidth: 600, background: '#fff', padding: 20, borderRadius: 8, boxShadow: '0 2px 8px rgba(0,0,0,0.05)' }}>
         <h3 style={{ fontSize: 18, marginBottom: 10 }}>How to Use</h3>
         <ol style={{ fontSize: 13, margin: 0, paddingLeft: 20 }}>
-          <li>Start the backend and static file server (see README for details).</li>
-          <li>Start the frontend (this app).</li>
-          <li>Enter an image tar.gz URL (hosted on the static server at <b>http://localhost:8000</b>) in the input bar above and submit.</li>
-          <li>The archive will be extracted by year, and you can browse years and images above.</li>
+          <li>Paste your URL (image.tar.gz) in the box and click submit</li>
+          <li>Wait until the download is done</li>
+          <li>Once the download is done, the link will appear</li>
+          <li>Please copy it or you can find it in the list of years</li>
+          <li>Go to SERET Mode on the TV</li>
+          <li>Run this command "NIU.sh RW"</li>
+          <li>Follow the instructions and then paste the link that you copied</li>
         </ol>
       </div>
       <div style={{ marginTop: 24, fontSize: 12, color: '#888', textAlign: 'center' }}>
         <div>Powered by:</div>
-        <div>yovi.a <span style={{ fontStyle: 'italic' }}>(kenangan mantan reguler less sugar)</span></div>
-        <div>s.evan <span style={{ fontStyle: 'italic' }}>(kenangan mantan reguler no sugar)</span></div>
+        <div>yovi.a <span style={{ fontStyle: 'italic' }}>(kenangan-mantan reguler less-sugar)</span></div>
+        <div>s.evan <span style={{ fontStyle: 'italic' }}>(kenangan-mantan reguler no-sugar)</span></div>
       </div>
     </div>
   );
