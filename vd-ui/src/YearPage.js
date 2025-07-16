@@ -9,7 +9,7 @@ function FolderTree({ tree, year }) {
   };
 
   const getColorForLevel = (level) => {
-    const blueShades = ['#003d82', '#136dccff', '#007bffff', '#4da6ff', '#99ccff'];
+    const blueShades = ['#64b5f6', '#42a5f5', '#2196f3', '#1976d2', '#1565c0'];
     return blueShades[level % blueShades.length];
   };
 
@@ -29,7 +29,7 @@ function FolderTree({ tree, year }) {
             {open[fullPath] ? '📂' : '📁'} {node.name}
           </span>
           {open[fullPath] && (
-            <div style={{ marginLeft: 24, marginTop: 6 }}>
+            <div style={{ marginLeft: window.innerWidth < 768 ? 16 : 24, marginTop: 6 }}>
               {hasSubfolders ? (
                 <ul style={{ listStyle: 'none', paddingLeft: 0 }}>
                   {node.children.filter(child => child.type === 'folder').map(child => 
@@ -41,7 +41,15 @@ function FolderTree({ tree, year }) {
                   href={url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  style={{ color, textDecoration: 'underline', fontWeight: 'normal', wordBreak: 'break-all' }}
+                  style={{ 
+                    color: color, 
+                    textDecoration: 'underline', 
+                    fontWeight: 'normal', 
+                    wordBreak: 'break-all',
+                    fontSize: window.innerWidth < 768 ? 12 : 14,
+                    opacity: 0.9,
+                    lineHeight: window.innerWidth < 768 ? 1.4 : 1.6
+                  }}
                 >
                   {url}
                 </a>
@@ -55,7 +63,7 @@ function FolderTree({ tree, year }) {
   };
 
   return (
-    <ul style={{ listStyle: 'none', paddingLeft: 20 }}>
+    <ul style={{ listStyle: 'none', paddingLeft: window.innerWidth < 768 ? 12 : 20, margin: 0 }}>
       {tree.map((node) => renderFolder(node))}
     </ul>
   );
@@ -66,6 +74,7 @@ function YearPage() {
   const [tree, setTree] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
   const fetchTree = () => {
     setLoading(true);
@@ -93,23 +102,49 @@ function YearPage() {
       }
     };
 
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
     document.addEventListener('visibilitychange', handleVisibilityChange);
-    return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
+    window.addEventListener('resize', handleResize);
+    
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      window.removeEventListener('resize', handleResize);
+    };
   }, [year]);
 
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', background: '#f7f7f7' }}>
-      <div style={{ background: '#fff', padding: 24, borderRadius: 8, boxShadow: '0 2px 8px rgba(0,0,0,0.05)', minWidth: 400 }}>
-        <h2>Year: {year}</h2>
-        {loading ? (
-          <div>Loading folder tree...</div>
-        ) : error ? (
-          <div style={{ color: 'red' }}>{error}</div>
-        ) : tree.length === 0 ? (
-          <div>No folders or files found.</div>
-        ) : (
-          <FolderTree tree={tree} year={year} />
-        )}
+    <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%)', padding: '20px 0' }}>
+      <div style={{ maxWidth: 800, margin: '0 auto', padding: '20px' }}>
+        <div style={{ 
+          background: '#2a2a2a', 
+          padding: isMobile ? '24px 16px' : '32px 24px', 
+          borderRadius: isMobile ? 12 : 16, 
+          boxShadow: '0 8px 32px rgba(0,0,0,0.3)', 
+          border: '1px solid #404040', 
+          width: '100%',
+          boxSizing: 'border-box'
+        }}>
+          <h2 style={{ 
+            color: '#e0e0e0', 
+            fontSize: isMobile ? 20 : 24, 
+            fontWeight: '600', 
+            marginBottom: isMobile ? 16 : 24, 
+            textAlign: 'center',
+            wordBreak: 'break-word'
+          }}>Year: {year}</h2>
+          {loading ? (
+            <div style={{ textAlign: 'center', color: '#b0b0b0', padding: 20 }}>Loading folder tree...</div>
+          ) : error ? (
+            <div style={{ color: '#e57373', textAlign: 'center', padding: 20 }}>{error}</div>
+          ) : tree.length === 0 ? (
+            <div style={{ textAlign: 'center', color: '#b0b0b0', padding: 20 }}>No folders or files found.</div>
+          ) : (
+            <FolderTree tree={tree} year={year} />
+          )}
+        </div>
       </div>
     </div>
   );

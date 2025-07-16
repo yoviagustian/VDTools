@@ -36,3 +36,27 @@
     transform: rotate(360deg);
   }
 }
+
+/* Dark theme input placeholder styling */
+.dark-input::placeholder {
+  color: #888;
+  opacity: 1;
+}
+
+.dark-input::-webkit-input-placeholder {
+  color: #888;
+}
+
+.dark-input::-moz-placeholder {
+  color: #888;
+  opacity: 1;
+}
+
+.dark-input:-ms-input-placeholder {
+  color: #888;
+}
+
+.dark-input:-moz-placeholder {
+  color: #888;
+  opacity: 1;
+}

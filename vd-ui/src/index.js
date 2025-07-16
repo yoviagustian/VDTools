@@ -11,7 +11,7 @@ root.render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />} />
-      <Route path="/year/:year" element={<YearPage />} />
+      <Route path="/:year" element={<YearPage />} />
     </Routes>
   </BrowserRouter>
 );
