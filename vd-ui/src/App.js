@@ -10,7 +10,7 @@ function App() {
   const [loadingDownload, setLoadingDownload] = useState(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
+  const fetchYears = () => {
     fetch('http://localhost:4000/api/years')
       .then(res => res.json())
       .then(data => {
@@ -22,6 +22,10 @@ function App() {
         setError('Failed to load years');
         setLoading(false);
       });
+  };
+
+  useEffect(() => {
+    fetchYears();
   }, []);
 
   const handleInputChange = (e) => {
@@ -42,6 +46,7 @@ function App() {
       const data = await res.json();
       if (res.ok) {
         setMessage({ type: 'success', text: data.message || 'Download and extraction successful.' });
+        fetchYears(); // Refresh years list after successful download
       } else {
         setMessage({ type: 'error', text: data.error || 'Download failed.' });
       }

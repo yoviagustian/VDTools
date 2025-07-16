@@ -8,37 +8,55 @@ function FolderTree({ tree, year }) {
     setOpen((prev) => ({ ...prev, [folderName]: !prev[folderName] }));
   };
 
+  const getColorForLevel = (level) => {
+    const blueShades = ['#003d82', '#136dccff', '#007bffff', '#4da6ff', '#99ccff'];
+    return blueShades[level % blueShades.length];
+  };
+
+  const renderFolder = (node, basePath = '', level = 0) => {
+    if (node.type === 'folder') {
+      const fullPath = basePath ? `${basePath}/${node.name}` : node.name;
+      const url = `http://localhost:8000/${year}/${fullPath}/`;
+      const hasSubfolders = node.children && node.children.some(child => child.type === 'folder');
+      const color = getColorForLevel(level);
+      
+      return (
+        <li key={fullPath}>
+          <span
+            style={{ cursor: 'pointer', fontWeight: 'bold', color }}
+            onClick={() => handleToggle(fullPath)}
+          >
+            {open[fullPath] ? '📂' : '📁'} {node.name}
+          </span>
+          {open[fullPath] && (
+            <div style={{ marginLeft: 24, marginTop: 6 }}>
+              {hasSubfolders ? (
+                <ul style={{ listStyle: 'none', paddingLeft: 0 }}>
+                  {node.children.filter(child => child.type === 'folder').map(child => 
+                    renderFolder(child, fullPath, level + 1)
+                  )}
+                </ul>
+              ) : (
+                <a
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color, textDecoration: 'underline', fontWeight: 'normal', wordBreak: 'break-all' }}
+                >
+                  {url}
+                </a>
+              )}
+            </div>
+          )}
+        </li>
+      );
+    }
+    return null;
+  };
+
   return (
     <ul style={{ listStyle: 'none', paddingLeft: 20 }}>
-      {tree.map((node) => {
-        if (node.type === 'folder') {
-          const url = `http://localhost:8000/${year}/${node.name}/`;
-          return (
-            <li key={node.name}>
-              <span
-                style={{ cursor: 'pointer', fontWeight: 'bold', color: '#007bff' }}
-                onClick={() => handleToggle(node.name)}
-              >
-                {open[node.name] ? '📂' : '📁'} {node.name}
-              </span>
-              {open[node.name] && (
-                <div style={{ marginLeft: 24, marginTop: 6 }}>
-                  <a
-                    href={url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{ color: '#007bff', textDecoration: 'underline', fontWeight: 'normal', wordBreak: 'break-all' }}
-                  >
-                    {url}
-                  </a>
-                </div>
-              )}
-            </li>
-          );
-        } else {
-          return null; // Do not show files at the top level
-        }
-      })}
+      {tree.map((node) => renderFolder(node))}
     </ul>
   );
 }
@@ -49,7 +67,7 @@ function YearPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
+  const fetchTree = () => {
     setLoading(true);
     fetch(`http://localhost:4000/api/years/${year}/tree`)
       .then(res => res.json())
@@ -62,6 +80,21 @@ function YearPage() {
         setError('Failed to load folder tree');
         setLoading(false);
       });
+  };
+
+  useEffect(() => {
+    fetchTree();
+  }, [year]);
+
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (!document.hidden) {
+        fetchTree();
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
   }, [year]);
 
   return (
