@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "./script/run_server.sh"
   },
   "keywords": [],
   "author": "",
@@ -12,6 +13,9 @@
   "type": "commonjs",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^5.1.0"
+    "events": "^3.3.0",
+    "express": "^5.1.0",
+    "node-events": "0.0.2",
+    "npm": "^11.4.2"
   }
 }

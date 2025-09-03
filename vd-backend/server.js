@@ -84,7 +84,7 @@ app.post('/api/download', (req, res) => {
     if (code === 0) {
       res.json({ message: output.trim() });
     } else {
-      res.status(500).json({ error: errorOutput.trim() || 'Download script failed.' });
+      res.status(500).json({ error: errorOutput || 'Download script failed.' });
     }
   });
 });

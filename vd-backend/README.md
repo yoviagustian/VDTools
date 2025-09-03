@@ -12,7 +12,7 @@
    node server.js
    ```
 
-The server will start on [http://localhost:4000](http://localhost:4000).
+The server will start on [http://107.102.187.30:4000](http://107.102.187.30:4000).
 
 ## API Endpoints
 - `POST /api/download` — Download and extract a tar.gz from a URL using the script.

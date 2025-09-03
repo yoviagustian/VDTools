@@ -19,4 +19,4 @@
    npm start
    ```
 
-The app will be available at [http://localhost:3000](http://localhost:3000).
+The app will be available at [http://107.102.187.30:3000](http://107.102.187.30:3000).

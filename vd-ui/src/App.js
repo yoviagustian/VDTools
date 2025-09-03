@@ -13,7 +13,7 @@ function App() {
   const navigate = useNavigate();
 
   const fetchYears = () => {
-    fetch('http://localhost:4000/api/years')
+    fetch('http://107.102.187.30:4000/api/years')
       .then(res => res.json())
       .then(data => {
         setYears(Array.isArray(data) ? data : []);
@@ -69,7 +69,7 @@ function App() {
     if (!input.trim()) return;
     setLoadingDownload(true);
     try {
-      const res = await fetch('http://localhost:4000/api/download', {
+      const res = await fetch('http://107.102.187.30:4000/api/download', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ url: input })
@@ -406,7 +406,7 @@ function App() {
             <li style={{ marginBottom: 8 }}>Once the download is done, the link will appear</li>
             <li style={{ marginBottom: 8 }}>Please copy it or you can find it in the list of years</li>
             <li style={{ marginBottom: 8 }}>Go to SERET Mode on the TV</li>
-            <li style={{ marginBottom: 8 }}>Run this command "NIU.sh RW"</li>
+            <li style={{ marginBottom: 8 }}>Run this command "NIU.sh rw"</li>
             <li style={{ marginBottom: 8 }}>Follow the instructions and then paste the link that you copied</li>
           </ol>
         </div>
