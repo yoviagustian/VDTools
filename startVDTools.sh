@@ -22,6 +22,13 @@ cleanup() {
 # Set up signal handlers
 trap cleanup SIGINT SIGTERM EXIT
 
+echo "Setting up environment..."
+
+# Create symlinks for .env file so both apps can access it
+ln -sf ../.env vd-ui/.env
+ln -sf ../.env vd-backend/.env
+echo "Environment file linked to both vd-ui and vd-backend"
+
 echo "Installing dependencies..."
 
 # Build vd-backend
