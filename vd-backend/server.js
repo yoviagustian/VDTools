@@ -1,3 +1,4 @@
+require('dotenv').config({ path: '../.env' });
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
@@ -89,5 +90,5 @@ app.post('/api/download', (req, res) => {
   });
 });
 
-const PORT = 4000;
+const PORT = process.env.API_PORT || 4000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`)); 

@@ -13,7 +13,8 @@ function App() {
   const navigate = useNavigate();
 
   const fetchYears = () => {
-    fetch('http://107.102.187.30:4000/api/years')
+    // fetch('http://107.102.187.30:4000/api/years')
+    fetch(`${process.env.REACT_APP_API_SERVER_URL || 'http://localhost:4000'}/api/years`)
       .then(res => res.json())
       .then(data => {
         setYears(Array.isArray(data) ? data : []);
@@ -69,7 +70,8 @@ function App() {
     if (!input.trim()) return;
     setLoadingDownload(true);
     try {
-      const res = await fetch('http://107.102.187.30:4000/api/download', {
+      // const res = await fetch('http://107.102.187.30:4000/api/download', {
+      const res = await fetch(`${process.env.REACT_APP_API_SERVER_URL || 'http://localhost:4000'}/api/download`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ url: input })

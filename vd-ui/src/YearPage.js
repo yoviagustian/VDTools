@@ -16,7 +16,8 @@ function FolderTree({ tree, year }) {
   const renderFolder = (node, basePath = '', level = 0) => {
     if (node.type === 'folder') {
       const fullPath = basePath ? `${basePath}/${node.name}` : node.name;
-      const url = `http://107.102.187.30:8000/${year}/${fullPath}/`;
+      // const url = `http://107.102.187.30:8000/${year}/${fullPath}/`;
+      const url = `${process.env.REACT_APP_FILE_SERVER_URL || 'http://localhost:8000'}/${year}/${fullPath}/`;
       const hasSubfolders = node.children && node.children.some(child => child.type === 'folder');
       const color = getColorForLevel(level);
       
@@ -79,7 +80,8 @@ function YearPage() {
 
   const fetchTree = () => {
     setLoading(true);
-    fetch(`http://107.102.187.30:4000/api/years/${year}/tree`)
+    // fetch(`http://107.102.187.30:4000/api/years/${year}/tree`)
+    fetch(`${process.env.REACT_APP_API_SERVER_URL || 'http://localhost:4000'}/api/years/${year}/tree`)
       .then(res => res.json())
       .then(data => {
         setTree(Array.isArray(data) ? data : []);
